@@ -1,0 +1,221 @@
+//PRINCIPAL
+package POOP5;
+public class POOP5 {
+    public static void main(String[] args){
+        //Getters Seters
+        Circulo cir = new Circulo();
+        cir.setRadio(5);
+        System.out.println(cir);
+        System.out.println("Radio de cir = "+cir.getRadio());
+        cir.setRadio((float)7.2);
+        cir.setRadio(8.9f);
+       
+       cir.setRadio(-7);
+        System.out.println(cir);
+        System.out.println("#####Composicion#####");
+        Persona persona1 = new Persona();
+        persona1.setNombre("Yael");
+        persona1.setApellido("Valdez");
+        Fecha fNac = new Fecha(15,4,2004);
+        persona1.setfNacimiento(fNac);
+        System.out.println(persona1);
+        
+        System.out.println("#####Composición2#####");
+        Fecha fNac2 = new Fecha(26,10,2000);
+        Persona persona2 = new Persona("Ricardo","Arzola",fNac2);
+        System.out.println(persona2);
+        
+        System.out.println("#####Composición3#####");
+        Persona persona3 = new Persona("Ligia","Rodríguez",1,2,1974);
+        System.out.println(persona3);
+        System.out.println("#####Coche#####");
+        Persona chofer =new Persona("Ricardo", "Arzola",26,10,19990);
+        Persona copiloto=new Persona("Roberto","Arzola",4,9,1993);
+        Persona pasajero1= new Persona("Erick","Carrillo",9,9,2009);
+        Persona pasajero2=new Persona("Antonio","Carrillo",22,2,1955);
+        Coche coche1=new Coche("Honda","Odyssey","Blanca",2007,20000,false,chofer,copiloto,pasajero1,pasajero2);
+        System.out.println(coche1);
+    }
+}//PERSONA (CLASE PADRE)
+package POOP5;
+public class Persona {
+    private String nombre;
+    private String apellido;
+    private Fecha fNacimiento;
+            
+    public Persona() {
+    }
+    public Persona(String nombre, String apellido, Fecha fNacimiento) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fNacimiento = fNacimiento;
+    }
+        public Persona(String nombre, String apellido, int dia, int mes, int anio) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        fNacimiento = new Fecha(dia,mes,anio);
+    }
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public String getApellido() {
+        return apellido;
+    }
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+    public Fecha getfNacimiento() {
+        return fNacimiento;
+    }
+    public void setfNacimiento(Fecha fNacimiento) {
+        this.fNacimiento = fNacimiento;
+    }
+    @Override
+    public String toString() {
+        return "Persona{" + "nombre=" + nombre + ", apellido=" + apellido + ", fNacimieno=" + fNacimiento + '}';
+    }    
+}
+//CLASE FECHA (HEREDA DE PERSONA)
+package POOP5;
+public class Fecha {
+    private int dia;
+    private int mes;
+    private int anio;
+
+    public Fecha() {
+    }
+    public Fecha(int dia, int mes, int anio) {
+        this.dia = dia;
+        this.mes = mes;
+        this.anio = anio;
+    }
+    public int getDia() {
+        return dia;
+    }
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+    public int getMes() {
+        return mes;
+    }
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
+    public int getAnio() {
+        return anio;
+    }
+    public void setAnio(int anio) {
+        this.anio = anio;
+    }
+    @Override
+    public String toString() {
+        return "Fecha{" + "dia=" + dia + ", mes=" + mes + ", anio=" + anio + '}';
+    }    
+}
+//CLASE CIRCULO
+package POOP5;
+public class Circulo {
+    private float radio;
+    public Circulo(){
+    }
+    public float perimetro(){
+        return  2*(float)Math.PI * radio;
+    }
+        public float area(){
+        return (float)Math.PI*radio*radio;
+    }
+        public float getRadio(){
+        return radio;
+    }
+        public void setRadio(float radio){
+        if (radio<0) {
+            this.radio = Math.abs(radio);
+        }else{
+            this.radio = radio;
+        }
+    }
+    @Override
+    public String toString(){
+        return "Circulo [radio="+radio+"]";
+    }
+}
+//CLASE COCHE
+package POOP5;
+public class Coche{
+    String marca;
+    String modelo;
+    String color;
+    int anio;
+    int kilometraje;
+    boolean estandar;  
+    private Persona chofer;
+    private Persona copiloto;
+    private Persona pasajero1;
+    private Persona pasajero2;
+    public Coche() {
+    }
+    public Coche(String marca, String modelo, String color, int anio, int kilometraje, boolean estandar, Persona chofer, Persona copiloto, Persona pasajero1, Persona pasajero2) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.color = color;
+        this.anio = anio;
+        this.kilometraje = kilometraje;
+        this.estandar = estandar;
+        this.chofer = chofer;
+        this.copiloto = copiloto;
+        this.pasajero1 = pasajero1;
+        this.pasajero2 = pasajero2;
+    }  
+    public Persona getChofer() {
+        return chofer;
+    }
+    public void setChofer(Persona chofer) {
+        this.chofer = chofer;
+    }
+    public Persona getCopiloto() {
+        return copiloto;
+    }
+    public void setCopiloto(Persona copiloto) {
+        this.copiloto = copiloto;
+    }
+    public Persona getPasajero1() {
+        return pasajero1;
+    }
+    public void setPasajero1(Persona pasajero1) {
+        this.pasajero1 = pasajero1;
+    }
+    public Persona getPasajero2() {
+        return pasajero2;
+    }
+    public void setPasajero2(Persona pasajero2) {
+        this.pasajero2 = pasajero2;
+    }
+    public void irAUnLugar(String lugar)
+    {
+        System.out.println("Estoy llendo a "+lugar);
+    }
+    public void venderCarro(String comprador){
+        System.out.println("Vendi mi coche a "+comprador);
+    }
+    public void gasolina(int porcentaje){
+        System.out.println("Tengo "+porcentaje+"% de gasolina");
+    }
+    public void servicio(){
+        if(kilometraje >50_000){
+            System.out.println("El carro necesita servicio");
+        }
+        else{
+            System.out.println("Aun falta para ir a servicio, no te preocupes");
+        }
+    }
+    public void recorridoEnTiempo(float tiempoHoras){
+        System.out.println("El tiempo del trayecto es "+tiempoHoras+" horas");
+    }    
+    @Override
+    public String toString() {
+        return "Coche{" + "marca=" + marca + ", modelo=" + modelo + ", color=" + color + ", anio=" + anio + ", kilometraje=" + kilometraje + ", estandar=" + estandar + ", chofer=" + chofer + ", copiloto=" + copiloto + ", pasajero1=" + pasajero1 + ", pasajero2=" + pasajero2 + '}';
+    }
+}
